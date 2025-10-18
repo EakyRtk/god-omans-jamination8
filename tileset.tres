@@ -1,0 +1,18 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://01l1g36nwfva"]
+
+[ext_resource type="Texture2D" uid="uid://djvrpyi3o55ln" path="res://beyaz_kare.png" id="1_2urvg"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f0tba"]
+texture = ExtResource("1_2urvg")
+texture_region_size = Vector2i(32, 32)
+0:0/next_alternative_id = 3
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/modulate = Color(0.58179104, 0.46495128, 0.1833004, 1)
+0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:0/2 = 2
+
+[resource]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_f0tba")

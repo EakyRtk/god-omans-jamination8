@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=4 uid="uid://6sj1k0il537"]
 
 [ext_resource type="Texture2D" uid="uid://djvrpyi3o55ln" path="res://beyaz_kare.png" id="1_f4dsk"]
-[ext_resource type="PackedScene" uid="uid://c3hv0qmumvtwn" path="res://player.tscn" id="2_f0tba"]
+[ext_resource type="PackedScene" uid="uid://5cpreexn0gmf" path="res://player.tscn" id="2_f0tba"]
 [ext_resource type="Script" uid="uid://duamw6edqtkt1" path="res://player s/hareket.gd" id="3_v657l"]
-[ext_resource type="PackedScene" uid="uid://ba44p2s4jbdh5" path="res://obje.tscn" id="4_6yos3"]
+[ext_resource type="PackedScene" uid="uid://b2qqp5kffx6fn" path="res://obje.tscn" id="4_6yos3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f0tba"]
 texture = ExtResource("1_f4dsk")
@@ -21,7 +21,10 @@ tile_map_data = PackedByteArray("AAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAA
 tile_set = SubResource("TileSet_v657l")
 
 [node name="player" parent="." instance=ExtResource("2_f0tba")]
-position = Vector2(605, 374)
+position = Vector2(314, 364)
+slide_on_ceiling = false
+floor_stop_on_slope = false
+floor_block_on_wall = false
 script = ExtResource("3_v657l")
 
 [node name="obje" parent="." instance=ExtResource("4_6yos3")]

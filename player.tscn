@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3hv0qmumvtwn"]
+[gd_scene load_steps=3 format=3 uid="uid://5cpreexn0gmf"]
 
 [ext_resource type="Texture2D" uid="uid://cw74hx33ey7gp" path="res://icon.svg" id="1_4flbx"]
 
@@ -7,6 +7,11 @@ radius = 27.0
 height = 88.0
 
 [node name="player" type="CharacterBody2D"]
+disable_mode = 1
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+platform_wall_layers = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_onrkg")

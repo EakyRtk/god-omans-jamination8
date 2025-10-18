@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ba44p2s4jbdh5"]
+[gd_scene load_steps=4 format=3 uid="uid://b2qqp5kffx6fn"]
 
 [ext_resource type="Texture2D" uid="uid://cw74hx33ey7gp" path="res://icon.svg" id="1_k5elt"]
 
@@ -8,9 +8,10 @@
 size = Vector2(50, 50)
 
 [node name="obje" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 7
 physics_material_override = SubResource("PhysicsMaterial_k5elt")
 gravity_scale = 0.0
-freeze_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ump1l")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbote762qfq7i"]
+
+[ext_resource type="PackedScene" uid="uid://cgciv76ttfvkx" path="res://levels/leveltemplate.tscn" id="1_ocgkp"]
+[ext_resource type="Script" uid="uid://b1f7jy4e34ydo" path="res://map_interactables/scene_changer.gd" id="2_owvua"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h6htp"]
+size = Vector2(20, 212.10251)
+
+[node name="LevelTemplate" instance=ExtResource("1_ocgkp")]
+
+[node name="SceneChangerArea" type="Area2D" parent="DeviceInteractables" index="0"]
+position = Vector2(749, 358)
+script = ExtResource("2_owvua")
+metadata/_custom_type_script = "uid://b1f7jy4e34ydo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeviceInteractables/SceneChangerArea" index="0"]
+position = Vector2(0, 90.94875)
+shape = SubResource("RectangleShape2D_h6htp")

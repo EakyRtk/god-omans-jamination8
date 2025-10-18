@@ -1,17 +1,13 @@
-extends RigidBody2D
-
-
-@export var SPEED = 500.0
+extends Player
 
 
 
-func _physics_process(delta: float) -> void:
+func _ready() -> void:
+#	physics_material_override.bounce = 1.0
+	pass
 
-
-	var input_vector = Input.get_vector("left","right","up","down")
-	apply_central_force(input_vector*SPEED)
-	
-
+func _physics_process(_delta: float) -> void:
+	default_player_movement()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.

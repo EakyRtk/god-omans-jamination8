@@ -7,8 +7,9 @@ texture = ExtResource("1_2urvg")
 texture_region_size = Vector2i(32, 32)
 0:0/next_alternative_id = 3
 0:0/0 = 0
+0:0/0/modulate = Color(0.75289226, 0.6820085, 0.6680022, 1)
 0:0/1 = 1
-0:0/1/modulate = Color(0.58179104, 0.46495128, 0.1833004, 1)
+0:0/1/modulate = Color(0.3279228, 0.31343168, 0.5266467, 1)
 0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 0:0/2 = 2
 

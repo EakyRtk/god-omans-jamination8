@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccectoxt38jub"]
+
+[ext_resource type="Script" uid="uid://b5v5flg06cu46" path="res://map_interactables/ghost_box.gd" id="1_qq3et"]
+[ext_resource type="Texture2D" uid="uid://cw74hx33ey7gp" path="res://icon.svg" id="1_uypan"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uypan"]
+size = Vector2(64, 64)
+
+[node name="GhostBox" type="Area2D"]
+script = ExtResource("1_qq3et")
+speed = 200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.522, 0.522)
+texture = ExtResource("1_uypan")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uypan")

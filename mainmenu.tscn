@@ -1,19 +1,64 @@
-[gd_scene load_steps=4 format=3 uid="uid://cj05s4wqq0ylq"]
+[gd_scene load_steps=6 format=3 uid="uid://cj05s4wqq0ylq"]
 
-[ext_resource type="Texture2D" uid="uid://x0e7d7s0l8e2" path="res://temp/375.png" id="1_d2nv2"]
 [ext_resource type="Script" uid="uid://dbbfk6aefjm02" path="res://scripts.gd" id="1_wgsso"]
 [ext_resource type="Texture2D" uid="uid://37v7kt4idd41" path="res://temp/215904-200.png" id="2_wgsso"]
+[ext_resource type="Texture2D" uid="uid://c41hucpj8cp2p" path="res://assets/IMG_4101.png" id="4_igs2m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wgsso"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_igs2m"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="mainmenu" type="Node2D"]
 script = ExtResource("1_wgsso")
 
 [node name="back" type="ColorRect" parent="."]
+visible = false
 offset_top = 1.0
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 color = Color(0.39607844, 0, 0.5568628, 1)
 
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_igs2m")
+
+[node name="play" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 576.0
+offset_right = 600.0
+offset_bottom = 680.0
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wgsso")
+theme_override_styles/focus = SubResource("StyleBoxFlat_igs2m")
+flat = true
+
+[node name="exit" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 664.0
+offset_top = 576.0
+offset_right = 832.0
+offset_bottom = 680.0
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wgsso")
+theme_override_styles/focus = SubResource("StyleBoxFlat_igs2m")
+flat = true
+
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = 449.0
 offset_top = 128.0
 offset_right = 811.0
@@ -26,16 +71,18 @@ theme_override_font_sizes/font_size = 50
 text = "GODOMANLAR"
 
 [node name="OYNA" type="TouchScreenButton" parent="."]
-position = Vector2(574, 252)
+visible = false
+position = Vector2(536, 1023)
 scale = Vector2(0.27734372, 0.27539063)
-texture_normal = ExtResource("1_d2nv2")
-texture_pressed = ExtResource("1_d2nv2")
 
 [node name="çık" type="TouchScreenButton" parent="."]
-position = Vector2(564, 433)
+visible = false
+position = Vector2(604, 832)
 scale = Vector2(0.8399996, 0.83500004)
 texture_normal = ExtResource("2_wgsso")
 texture_pressed = ExtResource("2_wgsso")
 
+[connection signal="pressed" from="Control/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Control/exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="OYNA" to="." method="_on_oyna_pressed"]
 [connection signal="pressed" from="çık" to="." method="_on_çık_pressed"]

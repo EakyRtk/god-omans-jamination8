@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=3 uid="uid://c6j50fbw1r7qb"]
+
+[ext_resource type="PackedScene" uid="uid://cgciv76ttfvkx" path="res://levels/leveltemplate.tscn" id="1_37fed"]
+[ext_resource type="Texture2D" uid="uid://nvlk4pkwhovf" path="res://assets/floortest1.png" id="2_8cqdu"]
+[ext_resource type="PackedScene" uid="uid://dgvrsj5qhi36b" path="res://map_interactables/door.tscn" id="3_ojdy8"]
+[ext_resource type="PackedScene" uid="uid://dlfyv03qv34y7" path="res://map_interactables/pressure_plate.tscn" id="4_qol6g"]
+[ext_resource type="PackedScene" uid="uid://dfws8uqhidg5i" path="res://connection_line.tscn" id="5_rysq0"]
+[ext_resource type="PackedScene" uid="uid://b2qqp5kffx6fn" path="res://obje.tscn" id="6_6ehph"]
+[ext_resource type="Script" uid="uid://1o66ei0sjpw6" path="res://player s/player.gd" id="7_8cqdu"]
+[ext_resource type="Texture2D" uid="uid://ck0jelq8lg2po" path="res://light_texture.tres" id="7_xv7sc"]
+[ext_resource type="Script" uid="uid://b1f7jy4e34ydo" path="res://map_interactables/scene_changer.gd" id="9_ojdy8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8cqdu"]
+bounce = 0.79
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qol6g"]
+size = Vector2(82, 296)
+
+[node name="SimpleLevel" instance=ExtResource("1_37fed")]
+
+[node name="Polygon2D" type="Polygon2D" parent="Tiles" index="0"]
+texture_repeat = 2
+texture = ExtResource("2_8cqdu")
+texture_scale = Vector2(0.56, 0.56)
+polygon = PackedVector2Array(-24, 256, -20, 635, 1264, 640, 1264, 264)
+
+[node name="Zemin" parent="Tiles" index="1"]
+visible = false
+
+[node name="Door" parent="Tiles" index="2" instance=ExtResource("3_ojdy8")]
+position = Vector2(1237, 440)
+
+[node name="PressurePlate" parent="DeviceInteractables" index="0" instance=ExtResource("4_qol6g")]
+position = Vector2(836, 446)
+is_button_type = false
+
+[node name="Line2D" parent="DeviceInteractables/PressurePlate" index="4" instance=ExtResource("5_rysq0")]
+points = PackedVector2Array(23, 25, 32, 47, 47, 64, 55, 71, 64, 76, 78, 82, 91, 85, 111, 93, 133, 100, 144, 102, 159, 100, 174, 99, 181, 94, 198, 89, 210, 87, 221, 90, 226, 92, 232, 108, 232, 123, 228, 129, 220, 133, 206, 135, 201, 132, 200, 126, 205, 118, 216, 107, 223, 102, 239, 101, 250, 103, 267, 107, 277, 109, 293, 116, 306, 116, 321, 116, 333, 112, 347, 108, 364, 100)
+
+[node name="obje" parent="Pushables" index="0" instance=ExtResource("6_6ehph")]
+position = Vector2(586, 442)
+linear_damp = 1.0
+script = ExtResource("7_8cqdu")
+SPEED = 400.0
+
+[node name="player" parent="." index="3"]
+physics_material_override = SubResource("PhysicsMaterial_8cqdu")
+linear_damp = 0.2
+script = null
+
+[node name="CanvasModulate" parent="." index="4"]
+color = Color(0.40108478, 0.29758307, 0.2710767, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="." index="6"]
+position = Vector2(1341, 448)
+shadow_enabled = true
+texture = ExtResource("7_xv7sc")
+texture_scale = 9.33
+
+[node name="SceneChangerArea" type="Area2D" parent="." index="7"]
+position = Vector2(1272, 432)
+script = ExtResource("9_ojdy8")
+scene_location = "res://levels/cult_level.tscn"
+metadata/_custom_type_script = "uid://b1f7jy4e34ydo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangerArea" index="0"]
+position = Vector2(31, -4)
+shape = SubResource("RectangleShape2D_qol6g")
+
+[connection signal="activate_device" from="DeviceInteractables/PressurePlate" to="Tiles/Door" method="_get_switched"]
+[connection signal="deactivate_device" from="DeviceInteractables/PressurePlate" to="Tiles/Door" method="_get_switched"]

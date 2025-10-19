@@ -1,19 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://5cpreexn0gmf"]
+[gd_scene load_steps=7 format=3 uid="uid://5cpreexn0gmf"]
 
+[ext_resource type="Texture2D" uid="uid://ck0jelq8lg2po" path="res://light_texture.tres" id="1_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://oy21bfgpjwmv" path="res://assets/player_temp.png" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://cy7ffauqficcc" path="res://assets/confusion.png" id="2_onrkg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4flbx"]
-
-[sub_resource type="Gradient" id="Gradient_4flbx"]
-interpolation_mode = 2
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_onrkg"]
-gradient = SubResource("Gradient_4flbx")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.4, 0)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 radius = 26.0
@@ -22,7 +13,7 @@ height = 58.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_4flbx"]
 radius = 17.029387
 
-[node name="player" type="RigidBody2D" groups=["pressure_activator"]]
+[node name="player" type="RigidBody2D" groups=["player", "pressure_activator"]]
 mass = 0.098
 physics_material_override = SubResource("PhysicsMaterial_4flbx")
 gravity_scale = 0.0
@@ -31,7 +22,7 @@ linear_damp = 7.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 energy = 0.5
-texture = SubResource("GradientTexture2D_onrkg")
+texture = ExtResource("1_i3pqv")
 texture_scale = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

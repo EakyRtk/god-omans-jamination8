@@ -8,7 +8,7 @@ extends Node2D
 		is_open = value
 		if is_open: # door opened
 			animation_player.play("open")
-			await animation_player.animation_finished
+			#await animation_player.animation_finished
 			collision_shape.set_deferred("disabled", true)
 		else: # door closed
 			animation_player.play_backwards("open")

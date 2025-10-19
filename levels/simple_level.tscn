@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctoqy1oosyaqa"]
+[gd_scene load_steps=10 format=3 uid="uid://ctoqy1oosyaqa"]
 
 [ext_resource type="PackedScene" uid="uid://cgciv76ttfvkx" path="res://levels/leveltemplate.tscn" id="1_swue2"]
 [ext_resource type="Texture2D" uid="uid://nvlk4pkwhovf" path="res://assets/floortest1.png" id="2_udb6m"]
 [ext_resource type="PackedScene" uid="uid://dgvrsj5qhi36b" path="res://map_interactables/door.tscn" id="3_udb6m"]
 [ext_resource type="PackedScene" uid="uid://b2qqp5kffx6fn" path="res://obje.tscn" id="4_l3j08"]
+[ext_resource type="PackedScene" uid="uid://dlfyv03qv34y7" path="res://map_interactables/pressure_plate.tscn" id="5_8n6rn"]
+[ext_resource type="PackedScene" uid="uid://dfws8uqhidg5i" path="res://connection_line.tscn" id="6_k8xkt"]
+[ext_resource type="Texture2D" uid="uid://ck0jelq8lg2po" path="res://light_texture.tres" id="7_k8xkt"]
+[ext_resource type="Script" uid="uid://b1f7jy4e34ydo" path="res://map_interactables/scene_changer.gd" id="8_iddvi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lj2ah"]
+size = Vector2(90, 200)
 
 [node name="SimpleLevel" instance=ExtResource("1_swue2")]
 
@@ -11,7 +18,7 @@
 texture_repeat = 2
 texture = ExtResource("2_udb6m")
 texture_scale = Vector2(0.56, 0.56)
-polygon = PackedVector2Array(-24, 256, -20, 635, 1225, 645, 1236, 254)
+polygon = PackedVector2Array(-24, 256, -20, 635, 1264, 640, 1264, 264)
 
 [node name="Zemin" parent="Tiles" index="1"]
 visible = false
@@ -19,5 +26,34 @@ visible = false
 [node name="Door" parent="Tiles" index="2" instance=ExtResource("3_udb6m")]
 position = Vector2(1237, 440)
 
-[node name="obje" parent="DeviceInteractables" index="0" instance=ExtResource("4_l3j08")]
-position = Vector2(150, 436)
+[node name="PressurePlate" parent="DeviceInteractables" index="0" instance=ExtResource("5_8n6rn")]
+position = Vector2(836, 446)
+is_button_type = false
+
+[node name="Line2D" parent="DeviceInteractables/PressurePlate" index="4" instance=ExtResource("6_k8xkt")]
+points = PackedVector2Array(23, 25, 32, 47, 47, 64, 55, 71, 64, 76, 78, 82, 91, 85, 111, 93, 133, 100, 144, 102, 159, 100, 174, 99, 181, 94, 198, 89, 210, 87, 221, 90, 226, 92, 232, 108, 232, 123, 228, 129, 220, 133, 206, 135, 201, 132, 200, 126, 205, 118, 216, 107, 223, 102, 239, 101, 250, 103, 267, 107, 277, 109, 293, 116, 306, 116, 321, 116, 333, 112, 347, 108, 364, 100)
+
+[node name="obje" parent="Pushables" index="0" instance=ExtResource("4_l3j08")]
+position = Vector2(586, 442)
+
+[node name="CanvasModulate" parent="." index="4"]
+color = Color(0.40108478, 0.29758307, 0.2710767, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="." index="6"]
+position = Vector2(1341, 448)
+shadow_enabled = true
+texture = ExtResource("7_k8xkt")
+texture_scale = 9.33
+
+[node name="SceneChangerArea" type="Area2D" parent="." index="7"]
+position = Vector2(1248, 440)
+script = ExtResource("8_iddvi")
+scene_location = "res://levels/ur_the_box_level.tscn"
+metadata/_custom_type_script = "uid://b1f7jy4e34ydo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangerArea" index="0"]
+position = Vector2(35, 4)
+shape = SubResource("RectangleShape2D_lj2ah")
+
+[connection signal="activate_device" from="DeviceInteractables/PressurePlate" to="Tiles/Door" method="_get_switched"]
+[connection signal="deactivate_device" from="DeviceInteractables/PressurePlate" to="Tiles/Door" method="_get_switched"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccectoxt38jub"]
+[gd_scene load_steps=5 format=3 uid="uid://ccectoxt38jub"]
 
 [ext_resource type="Script" uid="uid://b5v5flg06cu46" path="res://map_interactables/ghost_box.gd" id="1_qq3et"]
-[ext_resource type="Texture2D" uid="uid://cw74hx33ey7gp" path="res://icon.svg" id="1_uypan"]
+[ext_resource type="Material" uid="uid://epkk5omrfvbw" path="res://ghost_material.tres" id="2_8tsx7"]
+[ext_resource type="Texture2D" uid="uid://dsjysj15jsu3i" path="res://assets/ghost.png" id="2_qq3et"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uypan"]
 size = Vector2(64, 64)
@@ -11,8 +12,10 @@ script = ExtResource("1_qq3et")
 speed = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("2_8tsx7")
 scale = Vector2(0.522, 0.522)
-texture = ExtResource("1_uypan")
+texture = ExtResource("2_qq3et")
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_uypan")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dgvrsj5qhi36b"]
+[gd_scene load_steps=8 format=3 uid="uid://dgvrsj5qhi36b"]
 
 [ext_resource type="Script" uid="uid://bcalhna6ka7ww" path="res://map_interactables/door.gd" id="1_glpsv"]
 [ext_resource type="Texture2D" uid="uid://c1sugwct2rf27" path="res://assets/doorpiece.png" id="2_glpsv"]
@@ -32,6 +32,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(-9, 64)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LightOccluder2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LightOccluder2D2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 124)]
+}
 
 [sub_resource type="Animation" id="Animation_glpsv"]
 resource_name = "open"
@@ -59,12 +83,39 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(-9, 64), Vector2(-9, 136)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LightOccluder2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -70)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LightOccluder2D2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 124), Vector2(0, 197)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ugjlq"]
 _data = {
 &"RESET": SubResource("Animation_433qt"),
 &"open": SubResource("Animation_glpsv")
 }
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_glpsv"]
+polygon = PackedVector2Array(-40, -124, 32, -124, 32, 0, -40, 0)
 
 [node name="Door" type="Node2D"]
 script = ExtResource("1_glpsv")
@@ -89,3 +140,10 @@ shape = SubResource("RectangleShape2D_glpsv")
 libraries = {
 &"": SubResource("AnimationLibrary_ugjlq")
 }
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_glpsv")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+position = Vector2(0, 124)
+occluder = SubResource("OccluderPolygon2D_glpsv")

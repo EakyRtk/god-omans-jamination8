@@ -3,6 +3,9 @@ extends Node2D
 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("esc"): get_tree().quit()
+
 func _ready() -> void:
 	get_tree().scene_changed.connect(play_fade_out)
 

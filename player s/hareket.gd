@@ -22,6 +22,6 @@ func _ready() -> void:
 	# move_and_slide()
 
 func _apply_bug_fog(inside: bool, take_effect_time: float = 0.5) -> void:
-	await get_tree().create_timer(take_effect_time).timeout
+	#await get_tree().create_timer(take_effect_time).timeout
 	factor = -1 if inside else 1
 	took_effect_sprite.visible = inside

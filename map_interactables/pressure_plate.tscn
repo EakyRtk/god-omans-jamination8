@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlfyv03qv34y7"]
+[gd_scene load_steps=7 format=3 uid="uid://dlfyv03qv34y7"]
 
-[ext_resource type="Texture2D" uid="uid://cw74hx33ey7gp" path="res://icon.svg" id="1_3f8w0"]
 [ext_resource type="Script" uid="uid://u4p0sof58d4h" path="res://map_interactables/pressure_plate.gd" id="1_ymos5"]
+[ext_resource type="Texture2D" uid="uid://dc68pcx8g3ylo" path="res://assets/pressure_area.png" id="2_ymos5"]
+[ext_resource type="Texture2D" uid="uid://8eeccldj5m45" path="res://assets/pressure_active.png" id="3_uucav"]
+[ext_resource type="AudioStream" uid="uid://1t3gpviswx03" path="res://assets/plate_sfx.wav" id="4_t6pu2"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_uucav"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_14f3i"]
 size = Vector2(60, 60)
@@ -9,9 +13,22 @@ size = Vector2(60, 60)
 [node name="PressurePlate" type="Area2D"]
 script = ExtResource("1_ymos5")
 
-[node name="Icon" type="Sprite2D" parent="."]
+[node name="Deactive" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_uucav")
 scale = Vector2(0.452, 0.452)
-texture = ExtResource("1_3f8w0")
+texture = ExtResource("2_ymos5")
+
+[node name="Active" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_uucav")
+scale = Vector2(0.452, 0.452)
+texture = ExtResource("3_uucav")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_14f3i")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_t6pu2")
+volume_db = -11.556
+bus = &"SFX"

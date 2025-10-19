@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b2qqp5kffx6fn"]
 
-[ext_resource type="Texture2D" uid="uid://cw74hx33ey7gp" path="res://icon.svg" id="1_k5elt"]
+[ext_resource type="Texture2D" uid="uid://l8f7vqmrbly5" path="res://assets/box.png" id="1_k5elt"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k5elt"]
 bounce = 0.46
@@ -18,5 +18,5 @@ linear_damp = 1.08
 shape = SubResource("RectangleShape2D_ump1l")
 
 [node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.474, 0.474)
 texture = ExtResource("1_k5elt")

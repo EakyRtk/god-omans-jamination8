@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctoqy1oosyaqa"]
+
+[ext_resource type="PackedScene" uid="uid://cgciv76ttfvkx" path="res://levels/leveltemplate.tscn" id="1_swue2"]
+[ext_resource type="Texture2D" uid="uid://nvlk4pkwhovf" path="res://assets/floortest1.png" id="2_udb6m"]
+[ext_resource type="PackedScene" uid="uid://dgvrsj5qhi36b" path="res://map_interactables/door.tscn" id="3_udb6m"]
+[ext_resource type="PackedScene" uid="uid://b2qqp5kffx6fn" path="res://obje.tscn" id="4_l3j08"]
+
+[node name="SimpleLevel" instance=ExtResource("1_swue2")]
+
+[node name="Polygon2D" type="Polygon2D" parent="Tiles" index="0"]
+texture_repeat = 2
+texture = ExtResource("2_udb6m")
+texture_scale = Vector2(0.56, 0.56)
+polygon = PackedVector2Array(-24, 256, -20, 635, 1225, 645, 1236, 254)
+
+[node name="Zemin" parent="Tiles" index="1"]
+visible = false
+
+[node name="Door" parent="Tiles" index="2" instance=ExtResource("3_udb6m")]
+position = Vector2(1237, 440)
+
+[node name="obje" parent="DeviceInteractables" index="0" instance=ExtResource("4_l3j08")]
+position = Vector2(150, 436)

@@ -7,6 +7,9 @@ signal deactivate_device
 ## Basınç plakası tek seferlik üstüne basma yetiyor mu yoksa sürekli üstünde ağırlık mı olması lazım. True is tek seferlik.
 @export var is_button_type : bool = true
 
+@onready var deactive_sprite : Sprite2D = $Deactive
+@onready var active_sprite : Sprite2D = $Active
+@onready var sfx : AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready() -> void:
 	body_entered.connect(_body_entered)
@@ -16,8 +19,10 @@ func _body_entered(body: Node2D) -> void:
 	if body is Player: print("player girdi")
 	if body.is_in_group("pressure_activator"):
 		activate_device.emit()
-
-
+		active_sprite.visible = true
+		deactive_sprite.visible = false
+		sfx.pitch_scale = randf_range(0.9, 1.1)
+		sfx.play()
 		#o kadar da gerek yok ya
 		# var param 
 		# if body.has_meta("param"): 
@@ -26,5 +31,8 @@ func _body_entered(body: Node2D) -> void:
 		# print("pressure plate aktif")
 
 func _body_exited(body: Node2D) -> void:
+	deactive_sprite.visible = true
+
+	active_sprite.visible = false
 	if body.is_in_group("pressure_activator") and not is_button_type:
 		deactivate_device.emit()		

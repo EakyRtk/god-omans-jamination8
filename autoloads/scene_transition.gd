@@ -1,6 +1,5 @@
 extends Node2D
 
-signal animation_finished
 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 

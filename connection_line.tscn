@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfws8uqhidg5i"]
+
+[ext_resource type="Material" uid="uid://dulxqlirft1h" path="res://additive_unshaded_material.tres" id="1_3kb2d"]
+[ext_resource type="Texture2D" uid="uid://ckv4ublgwcyf1" path="res://assets/line_texture.png" id="2_g61su"]
+
+[node name="Line2D" type="Line2D"]
+texture_repeat = 2
+material = ExtResource("1_3kb2d")
+texture = ExtResource("2_g61su")
+texture_mode = 1

@@ -1,18 +1,50 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbote762qfq7i"]
+[gd_scene load_steps=10 format=3 uid="uid://dbote762qfq7i"]
 
 [ext_resource type="PackedScene" uid="uid://cgciv76ttfvkx" path="res://levels/leveltemplate.tscn" id="1_ocgkp"]
 [ext_resource type="Script" uid="uid://b1f7jy4e34ydo" path="res://map_interactables/scene_changer.gd" id="2_owvua"]
+[ext_resource type="PackedScene" uid="uid://dgvrsj5qhi36b" path="res://map_interactables/door.tscn" id="3_h6htp"]
+[ext_resource type="PackedScene" uid="uid://dlfyv03qv34y7" path="res://map_interactables/pressure_plate.tscn" id="4_10rns"]
+[ext_resource type="PackedScene" uid="uid://dfws8uqhidg5i" path="res://connection_line.tscn" id="5_0rxao"]
+[ext_resource type="Script" uid="uid://dllwulvw8qpij" path="res://map_interactables/control_bug_fog.gd" id="5_ad3ai"]
+[ext_resource type="PackedScene" uid="uid://b2qqp5kffx6fn" path="res://obje.tscn" id="7_at8ni"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h6htp"]
 size = Vector2(20, 212.10251)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rxao"]
+size = Vector2(106, 195)
+
 [node name="LevelTemplate" instance=ExtResource("1_ocgkp")]
 
 [node name="SceneChangerArea" type="Area2D" parent="DeviceInteractables" index="0"]
-position = Vector2(749, 358)
+position = Vector2(1088, 401)
 script = ExtResource("2_owvua")
 metadata/_custom_type_script = "uid://b1f7jy4e34ydo"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeviceInteractables/SceneChangerArea" index="0"]
 position = Vector2(0, 90.94875)
 shape = SubResource("RectangleShape2D_h6htp")
+
+[node name="Door" parent="DeviceInteractables" index="1" instance=ExtResource("3_h6htp")]
+position = Vector2(727, 435)
+
+[node name="PressurePlate" parent="DeviceInteractables" index="2" instance=ExtResource("4_10rns")]
+position = Vector2(480, 531)
+
+[node name="Line2D" parent="DeviceInteractables/PressurePlate" index="3" instance=ExtResource("5_0rxao")]
+points = PackedVector2Array(0, 7, 15, 17, 33, 32, 46, 35, 68, 39, 83, 38, 105, 38, 115, 38, 124, 38, 142, 37, 156, 37, 174, 34, 184, 31, 206, 19, 209, 17)
+
+[node name="ControlBugFogArea" type="Area2D" parent="DeviceInteractables" index="3"]
+position = Vector2(178, 431)
+audio_bus_override = true
+audio_bus_name = &"Fog"
+script = ExtResource("5_ad3ai")
+metadata/_custom_type_script = "uid://dllwulvw8qpij"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeviceInteractables/ControlBugFogArea" index="0"]
+shape = SubResource("RectangleShape2D_0rxao")
+
+[node name="obje" parent="DeviceInteractables" index="4" instance=ExtResource("7_at8ni")]
+position = Vector2(327, 542)
+
+[connection signal="activate_device" from="DeviceInteractables/PressurePlate" to="DeviceInteractables/Door" method="_get_switched"]

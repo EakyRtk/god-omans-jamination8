@@ -38,7 +38,7 @@ position = Vector2(415, 380)
 script = ExtResource("6_swp6q")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.43917757, 0.32966208, 0.3022661, 1)
+color = Color(0.6770958, 0.5416103, 0.5075969, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wfhbu")
